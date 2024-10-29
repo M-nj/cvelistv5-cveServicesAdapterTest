@@ -78,4 +78,14 @@ export declare class Git {
      *  logs deltas in time window
      */
     logDeltasInTimeWindow(start: string, stop: string): Promise<Delta>;
+    /**
+     * @returns string, commit id of the given repo.
+     */
+    getLocalRepoLatestCommitHash(): Promise<string>;
+    /**
+     * @param hash the commit hash
+     * @param filePath the file path relative to the base of the repo.
+     * @returns file contents at the given hash
+     */
+    getFileContentsAtHash(hash: string, filePath: string): Promise<string>;
 }

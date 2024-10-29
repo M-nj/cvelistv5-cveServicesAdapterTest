@@ -1,6 +1,8 @@
 /**
- *  CveId is an object that represents a CVE ID and provides
- *  helper functions to use it
+ *  CveId is a simple object that represents a CVE ID and provides helper functions to use it.
+ *  Each instance only holds onto a string (the CVE ID),
+ *  and the class has some simple static strings and arrays.
+
  */
 export declare class CveIdError extends Error {
 }

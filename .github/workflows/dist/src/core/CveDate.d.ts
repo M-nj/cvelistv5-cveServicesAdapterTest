@@ -18,7 +18,7 @@
  *    - jsDate to represent a standard JS Date object
  *    - isoDateStr to represent an ISO/UTC/Z date string (e.g. 2023-03-29T00:00:00.000Z)
  */
-import { IsoDateString } from '../common/IsoDateString.js';
+import { IsoDateString } from '../common/IsoDate/IsoDateString.js';
 export declare class CveDate {
     /** the Date object this CveDate instance wraps */
     private _jsDate;

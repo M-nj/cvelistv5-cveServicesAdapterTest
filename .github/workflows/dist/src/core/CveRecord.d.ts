@@ -1,5 +1,5 @@
 import { CveId } from './CveId.js';
-import { CveRecordV5, CveMetadata, Containers } from '../generated/quicktools/CveRecordV5.js';
+import { CveRecordV5, CveMetadata, Containers, AdpContainer } from '../generated/quicktools/CveRecordV5.js';
 import { CveSignature } from './CveSignature.js';
 export { CveId, CveIdError } from './CveId.js';
 export interface WriteFileOptions {
@@ -11,23 +11,27 @@ export declare class CveRecord implements CveRecordV5 {
     containers: Containers;
     cveMetadata: CveMetadata;
     dataType?: string;
-    dataVersion?: number;
+    dataVersion?: string;
     sourceObj: unknown;
     /** reads in a proper CVE Record JSON v5 format obj (e.g., JSON.parse()'d content of a file or the response from the CVE API 2.1)
      *  @param obj a Javascript object that conforms to the CVE Record JSON v5 format specification
      *  @todo verify it is a CVE Record JSON v5 format format that we know how to work with
      */
     constructor(obj: CveRecordV5);
-    /** factory method that converts a CveId to a path in the
+    /** DEPRECATED:  For all new code, use adapters/fs/CveFsReader.read() instead
+     *  factory method that converts a CveId to a path in the
      *  default `/cves` subdirectory, and synchronously reads in that CVE JSON 5.0 formatted file
      *  and builds a CveRecord
+     *  @deprecated use adapters/fs/CveFsReader.read() instead
      *  @param cveId a string or CveId object
      *  @param cves_directory (optional) relative or full path to where to find CVEs, if null, use .env spec
      *    (e.g., `./test/fixtures/cve/5`)
      *  @returns a CveRecord
      */
     static fromCveId(cve_id: string | CveId, cves_directory?: string): CveRecord | undefined;
-    /** factory method that synchronously reads in a CVE Record from a CVE JSON 5.0 formatted file
+    /** DEPRECATED:  New code should be using adapters/fs/CveFsReader.readFromFile() instead
+     *  factory method that synchronously reads in a CVE Record from a CVE JSON 5.0 formatted file
+     *  @deprecated use adapters/fs/CveFsReader.readFromFile() instead
      *  @param relFilepath relative or full path to the file
      *  @returns a CveRecord
      */
@@ -59,4 +63,15 @@ export declare class CveRecord implements CveRecordV5 {
      *  @returns the full path where the file was written to
      */
     writeToCvePath(repositoryRoot: string, prettyprint?: boolean): string;
+    /** Get the ADP container for a specific Org, by ID.
+     * @param adpOrgId the org Id for the ADP container to be found.
+     * @returns If found, the ADP container; Otherwise null.
+     */
+    getAdpOrgContainer(adpOrgId: string): null | any;
+    /**
+     * @returns mapping of adp containers from their org Ids.
+     */
+    getMappedAdpByOrgId(): {
+        [orgId: string]: AdpContainer;
+    };
 }

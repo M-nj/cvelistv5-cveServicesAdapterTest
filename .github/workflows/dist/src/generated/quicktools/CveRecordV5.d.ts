@@ -11,10 +11,11 @@ export interface CveRecordV5 {
     [property: string]: any;
 }
 export interface Containers {
-    cna: Cna;
+    cna: CnaContainer;
+    adp?: AdpContainer[];
     [property: string]: any;
 }
-export interface Cna {
+export interface CnaContainer {
     affected: Affected[];
     configurations?: any[];
     credits?: any[];
@@ -35,6 +36,9 @@ export interface Cna {
     title?: string;
     workarounds?: any[];
     [property: string]: any;
+}
+export interface AdpContainer extends Partial<CnaContainer> {
+    providerMetadata: ProviderMetadata;
 }
 export interface Affected {
     product?: string;

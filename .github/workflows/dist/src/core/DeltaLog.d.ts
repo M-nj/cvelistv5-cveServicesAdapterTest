@@ -14,7 +14,7 @@
  *    4. timestamp when the CVEs were committed to the repository
  */
 import { Delta } from './Delta.js';
-import { IsoDateString } from '../common/IsoDateString.js';
+import { IsoDateString } from '../common/IsoDate/IsoDateString.js';
 export declare class DeltaLog extends Array<Delta> {
     static kDeltaLogFilename: string;
     static kDeltaLogFile: string;

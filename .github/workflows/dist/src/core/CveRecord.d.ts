@@ -1,7 +1,6 @@
 import { CveId } from './CveId.js';
 import { CveRecordV5, CveMetadata, Containers, AdpContainer } from '../generated/quicktools/CveRecordV5.js';
 import { CveSignature } from './CveSignature.js';
-export { CveId, CveIdError } from './CveId.js';
 export interface WriteFileOptions {
     prettyprint?: boolean;
 }

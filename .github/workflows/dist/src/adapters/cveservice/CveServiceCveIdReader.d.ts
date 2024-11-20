@@ -1,9 +1,5 @@
-/// <reference types="node" resolution-mode="require"/>
-/// <reference types="node" resolution-mode="require"/>
-/// <reference types="c:/users/njaffe/documents/dev-team/cve-utils-branches/features/cveservices-adapter/node_modules/fetch-retry/index.js" />
 import { CveService } from './CveService.js';
 import { CveServiceCredSet } from './CveServiceCredSet.js';
-import { CveRecord } from '../../core/CveRecord.js';
 import { CveRecordInfo, CveServicesCveRecordInfo } from '../../core/CveRecordInfo.js';
 declare type CveServiceGETCveIdRawEndpointReturnSchema = {
     totalCount: number;
@@ -33,15 +29,14 @@ declare type CveServicesGETErrorEndpointReturnSchema = {
  */
 export declare class CveServiceCveIdReader extends CveService {
     /** This is only publicly accessable so that proper testing can be done. */
-    readonly _fetchRetry: (input: string | URL | Request, init?: import("fetch-retry").RequestInitWithRetry<typeof fetch>) => Promise<Response>;
     protected MAX_READ_RETRY: number;
     constructor(host: string, credSet: CveServiceCredSet);
-    getAllCvesChangedInTimeFrame(start: string, stop: string): Promise<CveRecord[]>;
+    getAllCvesChangedInTimeFrame(start: string, stop: string): Promise<CveRecordInfo[]>;
     /** async method that returns some information about the the CVE Services API
      * Note:  Avoid using this since it is expensive and can run as long as 15 seconds
      * @return an object with information about the CVE Services API
      */
-    getCveSummary(): Promise<{
+    getCveIdSummary(state?: 'RESERVED' | 'PUBLISHED' | 'REJECTED'): Promise<{
         totalCves: number;
         totalCvePages: number;
         cvesPerPage: number;

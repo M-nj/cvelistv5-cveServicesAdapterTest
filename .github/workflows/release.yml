@@ -55,7 +55,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Download artifact from baseline workflow
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@v6
         with:
           workflow: baseline.yml
           workflow_conclusion: success

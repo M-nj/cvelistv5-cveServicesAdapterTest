@@ -12,7 +12,6 @@
 */
 import { CommitResult, Response, SimpleGit, StatusResult } from 'simple-git';
 import { Delta } from './Delta.js';
-export { StatusResult, Response };
 export declare class Git {
     localDir: string;
     git: SimpleGit;

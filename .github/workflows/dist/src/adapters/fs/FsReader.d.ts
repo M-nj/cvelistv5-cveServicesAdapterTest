@@ -1,8 +1,15 @@
 /**
  *  FsReader performs synchronous local file system operations in read-only mode with no side effects
  */
+/// <reference types="node" resolution-mode="require"/>
+import fs from 'fs';
 export declare type FsAdapterType = "RO" | "Mutating";
 export declare class FsReader {
+    static readdirSync: typeof fs.readdirSync;
+    static readFileSync: typeof fs.readFileSync;
+    static pathJoin: (...paths: string[]) => string;
+    static isFile: (filepath: string) => boolean;
+    static isDirectory: (filepath: string) => boolean;
     private _relfilepath;
     get relFilepath(): string;
     /** constructor
@@ -18,8 +25,8 @@ export declare class FsReader {
      * @returns true iff the specified path exists
      */
     exists(): boolean;
-    /** synchronously reads a string from a file
-     *  @param data the data preformatted as a string (this means any formatting must be done before the call)
+    /** synchronously reads in the content of the file
+     *  @returns a string representation of the file
     */
     readAll(): string;
     /**
@@ -29,4 +36,10 @@ export declare class FsReader {
      * @returns true iff the specified path exists
      */
     static exists(path: string): boolean;
+    /**
+     * @param pattern glob pattern or cve id to match
+     * @param localDir the local directory to start from
+     * @returns list of file paths that match the given glob.
+     */
+    static findMatchingGlobbedPaths(pattern: string, localDir: string): string[];
 }

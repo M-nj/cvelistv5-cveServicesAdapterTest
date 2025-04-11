@@ -1,6 +1,6 @@
 import { CveId } from './CveId.js';
-import { CveRecordV5, CveMetadata, Containers, AdpContainer } from '../generated/quicktools/CveRecordV5.js';
-import { CveSignature } from './CveSignature.js';
+import { CveRecordV5, CveMetadata, Containers } from '../generated/quicktools/CveRecordV5.js';
+export { CveId, CveIdError } from './CveId.js';
 export interface WriteFileOptions {
     prettyprint?: boolean;
 }
@@ -10,7 +10,7 @@ export declare class CveRecord implements CveRecordV5 {
     containers: Containers;
     cveMetadata: CveMetadata;
     dataType?: string;
-    dataVersion?: string;
+    dataVersion?: number;
     sourceObj: unknown;
     /** reads in a proper CVE Record JSON v5 format obj (e.g., JSON.parse()'d content of a file or the response from the CVE API 2.1)
      *  @param obj a Javascript object that conforms to the CVE Record JSON v5 format specification
@@ -49,8 +49,6 @@ export declare class CveRecord implements CveRecordV5 {
      *  @returns a JSON string
      */
     toJsonString(prettyPrint?: boolean): string;
-    /** generates a CveSignature */
-    static toCveSignature(filepath: any, sha256?: boolean): CveSignature;
     /** writes a CVE Record to a file in CVE JSON 5.0 format
      *  @param relFilepath relative path to the file
      *  @param prettyprint boolean to set whether to pretty print the output
@@ -62,15 +60,4 @@ export declare class CveRecord implements CveRecordV5 {
      *  @returns the full path where the file was written to
      */
     writeToCvePath(repositoryRoot: string, prettyprint?: boolean): string;
-    /** Get the ADP container for a specific Org, by ID.
-     * @param adpOrgId the org Id for the ADP container to be found.
-     * @returns If found, the ADP container; Otherwise null.
-     */
-    getAdpOrgContainer(adpOrgId: string): null | any;
-    /**
-     * @returns mapping of adp containers from their org Ids.
-     */
-    getMappedAdpByOrgId(): {
-        [orgId: string]: AdpContainer;
-    };
 }

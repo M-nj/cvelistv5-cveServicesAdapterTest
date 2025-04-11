@@ -7,7 +7,6 @@
  *  needs to be in the current directory
  */
 import { CveCorePlus } from './CveCorePlus.js';
-export declare type IsoDate = string;
 export declare enum DeltaQueue {
     kNew = 1,
     kPublished = 2,

@@ -19,6 +19,10 @@ export declare class CveId {
     /** kTestYear: An arbitrary year, that does not overlap with a valid CVE ID year, used for development and testing. */
     static readonly kTestYear: number;
     private static _years;
+    /** Basic regex matcher for a CVE ID syntax, does not validate against year or number. */
+    static readonly BasicRegexMatcher: string;
+    /** Regex matcher for CVE ID syntax, also validates against year and number (up to 10 digits). */
+    static readonly StrictRegexMatcher: string;
     /** internal representation of the CVE ID */
     id: string;
     /**
@@ -87,4 +91,9 @@ export declare class CveId {
      *  @param b string representing another CVE ID
      */
     static comparator(a: string, b: string): number;
+    /**
+     * @param str the string to match against
+     * @returns list of all cve ids found in the string.
+     */
+    static extractedFromString(str: string): string[];
 }

@@ -3,22 +3,18 @@
  */
 import { Activity, ActivityStep } from '../core/Activity.js';
 import { ActivityLogOptions, ActivityLog } from '../core/ActivityLog.js';
+import { CveServiceCveReader } from '../adapters/cveservice/CveServiceCveReader.js';
 export declare const kActivity_UpdateByModificationDateWindow = "UPDATE_BY_MODIFICATION_DATE_WINDOW";
 export declare const kActivity_UpdateByPage = "UPDATE_BY_PAGE";
-/**
-  @deprecated use src\commands\updateCvesDir\CveUpdater instead.
-**/
 export declare class CveUpdater {
     static _recsPerPage: number;
+    _cveServiceReader: CveServiceCveReader;
     /** repository base path */
     _repository_base: string;
     _release_note_path: string;
     _recent_activities_path: string;
     _activityLog: ActivityLog;
-    /**
-    @deprecated use src\commands\updateCvesDir\CveUpdater instead.
-  **/
-    constructor(activity: string, logOptions: ActivityLogOptions);
+    constructor(activity: string, logOptions: ActivityLogOptions, cveService: CveServiceCveReader);
     /** retrieves CVEs added or updated in a window of time
      *  NOTE that if the number of records is > max, then the window is narrowed
      *  until the number of records is <= max, and only this narrowed window (called a frame) of CVEs

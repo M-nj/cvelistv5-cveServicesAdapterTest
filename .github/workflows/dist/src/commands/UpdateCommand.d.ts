@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import { GenericCommand } from './../GenericCommand.js';
+import { GenericCommand } from './GenericCommand.js';
 /** Command to update local repository using CVE REST API */
 export declare class UpdateCommand extends GenericCommand {
     /** default number of minutes to look back when a start date is not specified */

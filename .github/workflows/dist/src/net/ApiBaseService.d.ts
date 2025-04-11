@@ -2,6 +2,7 @@
  * Abstract base class providing common functions for the CveXXXServices classes
  *  Note that the location of the CVE Services API, username, password, tokens, etc.
  *    are all set in the project's .env file, which must be defined before using
+ * @deprecated see {@link ./src/adapters/cveservice/CveService.ts CveService} instead.
  */
 export declare abstract class ApiBaseService {
     /** full url to CVE Service */

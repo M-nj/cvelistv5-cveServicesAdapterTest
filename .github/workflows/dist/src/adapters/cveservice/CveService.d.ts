@@ -1,6 +1,4 @@
 /// <reference types="node" resolution-mode="require"/>
-/// <reference types="node" resolution-mode="require"/>
-/// <reference types="c:/users/njaffe/documents/cve-projects/cve-core/node_modules/fetch-retry/index.js" />
 import { CveServiceCredSet } from './CveServiceCredSet.js';
 import { CveServiceBaseUrl } from './CveServiceBaseUrl.js';
 export declare const fetchRetry: (input: string | URL | Request, init?: import("fetch-retry").RequestInitWithRetry<typeof fetch>) => Promise<Response>;
